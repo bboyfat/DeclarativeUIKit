@@ -7,9 +7,9 @@
 
 import UIKit
 
-public extension UIView {
+extension UIView {
 
-    @objc func clipToSuperview() {
+    @objc open func clipToSuperview() {
         guard let superView = superview else {
             return
         }
@@ -22,7 +22,7 @@ public extension UIView {
         ])
     }
 
-    func layoutSubview(_ subview: UIView,
+    public func layoutSubview(_ subview: UIView,
                        layout: (_ subview: UIView) -> ([NSLayoutConstraint])) {
         addSubview(subview)
         let constraints = layout(subview)
