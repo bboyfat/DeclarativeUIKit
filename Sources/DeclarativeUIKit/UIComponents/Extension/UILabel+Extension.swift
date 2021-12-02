@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UILabel+Extension.swift
 //  
 //
 //  Created by Andrey Petrovskiy on 02.12.2021.
@@ -19,14 +19,13 @@ extension UILabel {
         return self
     }
 
-    func withScaleFactor(_ minimumScale: CGFloat = 0.5) {
-        adjustsFontForContentSizeCategory = true
+    func withScaleFactor(_ minimumScale: CGFloat = 0.5) -> Self {
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = minimumScale
         return self
     }
 
-    func withTextAlighment(_ alignment: NSTextAlignment = .left) {
+    func withTextAlighment(_ alignment: NSTextAlignment = .left) -> Self {
         textAlignment = alignment
         return self
     }
