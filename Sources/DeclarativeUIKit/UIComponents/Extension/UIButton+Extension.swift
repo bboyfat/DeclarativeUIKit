@@ -6,7 +6,7 @@
 //
 
 import UIKit
-public typealias ButtonAction = () - Void
+public typealias ButtonAction = () -> Void
 public extension UIButton {
     func withAction(_ action: ButtonAction) -> Self {
         addTarget(self, action: #selector(handleAction), for: .touchUpInside)
