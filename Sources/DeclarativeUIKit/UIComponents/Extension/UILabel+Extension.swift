@@ -8,7 +8,7 @@
 import UIKit
 
 
-extension UILabel {
+public extension UILabel {
     func withTextColor(_ color: UIColor) -> Self {
         textColor = color
         return self
