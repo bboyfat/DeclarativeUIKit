@@ -8,14 +8,21 @@
 import UIKit
 public typealias ButtonAction = () -> Void
 public extension UIButton {
-    func withAction(_ action: ButtonAction) -> Self {
-        addTarget(self, action: #selector(handleAction), for: .touchUpInside)
 
-        @objc func handleAction() {
-            action()
+    func withAction(controlIvent: UIControl.Event = .touchUpInside,
+                    _ action: @escaping ButtonAction) {
+        @objc class ClosureSleeve: NSObject {
+            let closure: ButtonAction
+            init(_ closure: @escaping ButtonAction) { self.closure = closure }
+            @objc func invoke() { closure() }
         }
-        return self
+        let sleeve = ClosureSleeve(action)
+        addTarget(sleeve,
+                  action: #selector(ClosureSleeve.invoke),
+                  for: .touchUpInside)
+        objc_setAssociatedObject(self, "\(UUID())", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
     }
+
 
     func withTitle(_ title: String) -> Self {
         setTitle(title, for: .normal)
