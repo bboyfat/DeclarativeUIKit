@@ -30,4 +30,9 @@ public extension UILabel {
         return self
     }
 
+    func withText(_ text: String) -> Self {
+        self.text = text
+        return self
+    }
+
 }
